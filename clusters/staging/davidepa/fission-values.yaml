@@ -3,6 +3,8 @@ stfc-cloud-fission:
     openTelemetry:
       otlpCollectorEndpoint: "otel-collector.opentelemetry-operator-system.svc:4317"
 
+    additionalFissionNamespaces: [fission]
+
     serviceMonitor:
       enabled: true
       namespace: "monitoring-system"
