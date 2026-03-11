@@ -83,6 +83,16 @@ spec:
     metadata:
       name: "{{.name}}"
       namespace: argocd
+      annotations:
+        argocd.argoproj.io/ignore-resources: |
+          group: rbac.authorization.k8s.io
+          kind: ClusterRole
+          name: fission-preupgrade
+          group: rbac.authorization.k8s.io
+          kind: Role
+          name: fission-preupgrade-fission-cr
+          namespace: fission
+
     spec:
       project: default
       source:
