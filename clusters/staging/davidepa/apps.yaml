@@ -83,15 +83,6 @@ spec:
     metadata:
       name: "{{.name}}"
       namespace: argocd
-      annotations:
-        argocd.argoproj.io/ignore-resources: |
-          group: rbac.authorization.k8s.io
-          kind: ClusterRole
-          name: fission-preupgrade
-          group: rbac.authorization.k8s.io
-          kind: Role
-          name: fission-preupgrade-fission-cr
-          namespace: fission
 
     spec:
       project: default
@@ -140,6 +131,15 @@ spec:
             jsonPointers:
               - /rules
     {{- end }}
+
+    
+    {{- if eq .name "fission" }}
+        spec:
+          source:
+            helm:
+              skipHooks: true
+      {{- end }
+
 
 ---
 apiVersion: argoproj.io/v1alpha1
