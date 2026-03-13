@@ -4,6 +4,10 @@ stfc-cloud-fission:
       otlpCollectorEndpoint: "otel-collector.opentelemetry-operator-system.svc:4317"
 
     additionalFissionNamespaces: [fission]
+    
+    webhook:
+      certManager:
+        enabled: true
 
     serviceMonitor:
       enabled: true
