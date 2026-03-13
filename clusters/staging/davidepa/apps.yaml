@@ -133,12 +133,22 @@ spec:
     {{- end }}
 
     
-    {{- if eq .name "fission" }}
-        spec:
-          source:
-            helm:
-              skipHooks: true
-    {{- end }}
+    {{- if eq .name "cert-manager" }}
+      metadata:
+        annotations:
+          argocd.argoproj.io/sync-wave: "0"
+      {{- end }}
+
+      {{- if eq .name "fission" }}
+      metadata:
+        annotations:
+          argocd.argoproj.io/sync-wave: "1"
+      spec:
+        source:
+          helm:
+            skipHooks: true        # You already added this
+      {{- end }}
+
 
 
 ---
