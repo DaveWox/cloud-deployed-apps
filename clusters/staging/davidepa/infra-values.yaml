@@ -22,76 +22,8 @@ stfc-cloud-openstack-cluster:
         longhorn.store.nodeselect/longhorn-storage-node: true
 
     addons:
-      ingress:
-        enabled: true
-        nginx:
-          release:
-            values:
-              controller:
-                electionID: ingress-controller-leader
-                ingressClass: internal-nginx
-                ingressClassResource:
-                  name: internal-nginx
-                  enabled: true
-                  default: true
-                  controllerValue: "k8s.io/ingress-internal-nginx"
-                service:
-                  annotations:
-                    # Don't delete the floating ip when deleting loadbalancers
-                    # prevents errors when deleting clusters, leave as true
-                    loadbalancer.openstack.org/keep-floatingip: true
-                  # *.david-epa.nubes.stfc.ac.uk
-                  loadBalancerIP: "130.246.83.76"
-
-      monitoring:
-        enabled: true
-        kubePrometheusStack:
-          release:
-            values:
-              prometheus:
-                prometheusSpec:
-                  externalLabels:
-                    cluster: david-epa-cluster
-                    env: staging
-                ingress:
-                  ingressClassName: internal-nginx
-                  annotations:
-                    nginx.ingress.kubernetes.io/auth-type: basic
-                    nginx.ingress.kubernetes.io/auth-secret: basic-auth
-                    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required - David EPA Cluster"
-                  hosts:
-                    - prometheus.david-epa.nubes.stfc.ac.uk
-                  tls:
-                    - hosts:
-                        - prometheus.david-epa.nubes.stfc.ac.uk
-                      secretName: tls-keypair
-              grafana:
-                grafana.ini:
-                  server:
-                    root_url: https://grafana.david-epa.nubes.stfc.ac.uk
-                ingress:
-                  ingressClassName: internal-nginx
-                  hosts:
-                    - grafana.david-epa.nubes.stfc.ac.uk
-                  tls:
-                    - hosts:
-                        - grafana.david-epa.nubes.stfc.ac.uk
-                      secretName: tls-keypair
-              alertmanager:
-                enabled: false
-                ingress:
-                  ingressClassName: internal-nginx
-                  annotations:
-                    nginx.ingress.kubernetes.io/auth-type: basic
-                    nginx.ingress.kubernetes.io/auth-secret: basic-auth
-                    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required - David EPA Cluster"
-                  hosts:
-                    - alertmanager.david-epa.nubes.stfc.ac.uk
-                  tls:
-                    - hosts:
-                        - alertmanager.david-epa.nubes.stfc.ac.uk
-                      secretName: tls-keypair
+      # defrag etcd every day at 1:12pm
       etcdDefrag:
         release:
           values:
-            schedule: 1 12 * * * # smearing the time for defrag job 1:12pm daily  
+            schedule: 1 12 * * * # smearing the time for defrag job 1:12pm daily
