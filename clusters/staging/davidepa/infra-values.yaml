@@ -22,8 +22,8 @@ stfc-cloud-openstack-cluster:
         longhorn.store.nodeselect/longhorn-storage-node: true
 
     addons:
-        # defrag etcd every day at 1:12pm
+      # defrag etcd every day at 1:12pm
       etcdDefrag:
         release:
           values:
-            schedule: 1 12 * * * # smearing the time for defrag job 1:12pm daily  
+            schedule: 1 12 * * * # smearing the time for defrag job 1:12pm daily
