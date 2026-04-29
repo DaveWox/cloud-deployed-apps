@@ -1,5 +1,7 @@
 stfc-cloud-fission:
   fission-all:
+    routerServiceType: ClusterIP
+    
     openTelemetry:
       otlpCollectorEndpoint: "otel-collector.opentelemetry-operator-system.svc:4317"
 
