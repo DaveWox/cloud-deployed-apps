@@ -1,27 +1,6 @@
 stfc-cloud-fission:
   fission-all:
     routerServiceType: ClusterIP
-
-    router:
-      ingress:
-        enabled: true
-        ingressClassName: ingress-nginx-external
-
-        annotations:
-          nginx.ingress.kubernetes.io/ssl-redirect: "true"
-          cert-manager.io/cluster-issuer: self-signed
-
-        hosts:
-          - host: fission.david-epa.nubes.stfc.ac.uk
-            paths:
-              - path: /
-                pathType: Prefix
-
-        tls:
-          - secretName: fission-router-tls
-            hosts:
-              - fission.david-epa.nubes.stfc.ac.uk
-
     
     openTelemetry:
       otlpCollectorEndpoint: "otel-collector.opentelemetry-operator-system.svc:4317"
