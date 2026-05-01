@@ -10,7 +10,7 @@ metadata:
 spec:
   tls:
     - hosts:
-        - fission.david-epa.ac.uk
+        - fission.david-epa.nubes.stfc.ac.uk
       secretName: fission-router-tls
   rules:
     - host: fission.david-epa.ac.uk
