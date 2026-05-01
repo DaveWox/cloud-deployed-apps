@@ -14,7 +14,8 @@ stfc-cloud-fission:
         hosts:
           - host: fission.david-epa.nubes.stfc.ac.uk
             paths:
-              - /
+              - path: /
+                pathType: Prefix
 
         tls:
           - secretName: fission-router-tls
