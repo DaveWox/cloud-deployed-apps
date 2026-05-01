@@ -4,6 +4,9 @@ ingress-nginx-external:
       enabled: true
       serviceMonitor:
         enabled: true
+    admissionWebhooks:
+      enabled: true
+      failurePolicy: Fail
     electionID: external-ingress-controller-leader
     ingressClass: ingress-nginx-external
     ingressClassResource:
