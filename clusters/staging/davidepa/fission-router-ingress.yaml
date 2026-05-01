@@ -13,7 +13,7 @@ spec:
         - fission.david-epa.nubes.stfc.ac.uk
       secretName: fission-router-tls
   rules:
-    - host: fission.david-epa.ac.uk
+    - host: fission.david-epa.nubes.stfc.ac.uk
       http:
         paths:
           - path: /
