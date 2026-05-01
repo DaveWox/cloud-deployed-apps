@@ -8,6 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     cert-manager.io/cluster-issuer: self-signed
 spec:
+  ingressClassName: ingress-nginx-external
   tls:
     - hosts:
         - fission.david-epa.nubes.stfc.ac.uk
